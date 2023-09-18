@@ -10,20 +10,29 @@ userForm.registerFormCallback = data => {
     ApiConnector.register(data, funRegisterCB);
 };
 
-function processingResponse(response) {
+function processingResponseLogin(response) {
     if (response.success) {
         location.reload();
     }
     else {
-        throw response.error;
+        userForm.setLoginErrorMessage(response.error);
     }
 }
 
 function funLoginCB(response) {
-    processingResponse(response);
+    processingResponseLogin(response);
+}
+
+function processingResponseRegister(response) {
+    if (response.success) {
+        location.reload();
+    }
+    else {
+        userForm.setRegisterErrorMessage(response.error);
+    }
 }
 
 function funRegisterCB(response) {
-    processingResponse(response);
+    processingResponseRegister(response);
 }
 
